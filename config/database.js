@@ -1,13 +1,17 @@
 const mongoose = require ("mongoose")
 
-const database = mongoose.connect("mongodb://localhost:27017/stage3",(err)=>
+const dotenv = require('dotenv').config()
+
+const BD = process.env.BD 
+
+const database = mongoose.connect(BD,(err)=>
 {
 if(err)
 {
-    console.log("failed to  connect"+err)
+    console.log("failed to  connect "+err)
 }
 else{
-    console.log("connected successfully with DB")
+    console.log("connected successfully with BD")
 }
 })
 
