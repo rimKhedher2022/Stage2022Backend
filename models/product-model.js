@@ -20,7 +20,28 @@ price:{
 stock:{
     type:String,
     required:true
-}
+},
+
+
+
+subcategory:
+    {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"subcategories"
+
+    },
+
+        orders:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"orders"
+
+
+
+        }]
+
+
+
+
 
 
 
