@@ -6,7 +6,11 @@
 const route = require("express").Router()
 const product_controller = require("../controllers/product-controller")
 
-route.post('/create',product_controller.create)
+const upload = require("../middlewares/uploadFile")
+
+
+
+route.post('/create',upload.single("photo"),product_controller.create)
 
 route.get('/getall',product_controller.getall)
 

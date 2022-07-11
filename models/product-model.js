@@ -39,6 +39,12 @@ subcategory:
 
         }]
 
+        ,
+
+        image:{
+            type:String,
+            required:true
+        }
 
 
 

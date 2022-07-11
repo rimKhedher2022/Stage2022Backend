@@ -6,6 +6,9 @@ module.exports = {
 // pushi product fi subcategory 
 create:(req,res)=>{
 
+
+    req.body["image"]=req.file.filename
+
 const product = new product_model(req.body)
 product.save(req.body,(err,item)=>{
 if(err)
@@ -130,6 +133,7 @@ res.status(406).json({message:"failed to delete"})
         else
         {
             res.status(201).json({message:"deleted"})
+
         }
     })
 }
