@@ -1,4 +1,5 @@
 const subcategory_model = require ("../models/subcategory-model")
+const category_model= require("../models/category-model")
 
 module.exports = {
 
@@ -17,7 +18,21 @@ subcategory.save(req.body,(err,item)=>
 
     else 
     {
-        res.status(201).json({message:" subcategory created successuflly" , date:item})
+category_model.findByIdAndUpdate(req.body.category, // update fil category , mdification 
+    
+ {$push:{subcategories:subcategory}},()=> //    dans l'attribut subcategories a la création d 'un subcategory directement push dans category 
+ {
+    res.status(201).json({message:" subcategory created successuflly" , date:item})
+ })  
+    
+    
+    
+
+
+
+
+
+        
     }
 
 })
@@ -30,7 +45,7 @@ subcategory.save(req.body,(err,item)=>
 
 getall:(req,res)=>
 {
-    subcategory_model.find({},(err,items)=>
+    subcategory_model.find({}).populate({path:"products"}).exec((err,items)=>   /// kif yabda array 
     
     {
         if(err)
@@ -52,7 +67,7 @@ getall:(req,res)=>
 getone:(req,res)=>
 
 {
-subcategory_model.findById(req.params.id,(err,item)=>{
+subcategory_model.findById(req.params.id,(err,items)=>{
 
  if(err)
 {
@@ -60,7 +75,7 @@ res.status(406).json({message:"failed to get subcategories"})
 }
 
 else{
-    res.status(201).json({message:"subcategory",data:item})
+    res.status(201).json({message:"subcategory",data:items})
 
 }
 
@@ -75,7 +90,7 @@ else{
 
 getbyname:(req,res)=>
 {
-    subcategory_model.find({name:req.query.name},(err,item)=>
+    subcategory_model.find({name:req.query.name},(err,items)=>
     {
     if (err)
     {
@@ -84,7 +99,12 @@ getbyname:(req,res)=>
 
     else 
     {
-    res.status(201).json({message:"subcategory ",data:item})
+
+
+
+
+
+    res.status(201).json({message:"subcategory ",data:items})
     }
 })
     

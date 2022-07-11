@@ -16,14 +16,7 @@ const subcategory_router  = require("./routers/subcategory-router")
 
 const category_router = require("./routers/category-router")
 
-
-
-
 const order_router = require ("./routers/order-router")
-
-
-
-
 
 
 app.use('/products', product_router)

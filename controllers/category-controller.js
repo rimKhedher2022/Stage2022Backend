@@ -51,7 +51,7 @@ res.status(406).json({message:"failed to get all categories"})
 getone:(req,res)=>
 
 {
-    category_model.findById(req.params.id,(err,item)=>
+    category_model.findById(req.params.id,(err,items)=>
     
     {
         if (err)
@@ -61,7 +61,7 @@ res.status(406).json({message:"failed to get this category by this id"})
 
 
         else {
-            res.status(201).json({message:"category",data:item})
+            res.status(201).json({message:"category",data:items})
 
         }
     }
@@ -73,7 +73,7 @@ res.status(406).json({message:"failed to get this category by this id"})
 getbyname:(req,res)=>
 
 {
-category_model.find({name:req.query.name},(err,item)=>
+category_model.find({name:req.query.name},(err,items)=>
 
 {
     if(err)
@@ -84,7 +84,7 @@ res.status(406).json({message:"failed to get this category"})
 
     else 
     {
-        res.status(201).json({message:"category by name",data:item})
+        res.status(201).json({message:"category by name",data:items})
     }
 
 }

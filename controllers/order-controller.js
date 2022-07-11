@@ -54,7 +54,7 @@ res.status(201).json({message:"list of orders ",data:items})
 getbyid:(req,res)=>
 
 {
-order_model.findById(req.params.id,(err,item)=>
+order_model.findById(req.params.id,(err,items)=>
 
 {
 
@@ -64,7 +64,7 @@ res.status(406).json({message:"failed to get this order by this id "})
     }
     else
     {
- res.status(201).json({message:"order : ",data:item})
+ res.status(201).json({message:"order : ",data:items})
     }
 })
 
@@ -95,22 +95,20 @@ res.status(201).json({message:"order ",data:items})
 
 
 update:(req,res)=>
-
-
 {
 
-order_model.findOneAndUpdate(req.params.id,req.body,{new:true},(err,item)=>
+order_model.findByIdAndUpdate(req.params.id,req.body,{new:true},(err,item)=>
 {
-if(err)
+        if(err)
 
-{
-res.status(406).json({message:"update failed"})
-}
+        {
+        res.status(406).json({message:"update failed"})
+        }
 
-else
-{
-    res.status(201).json({message:"update ",data:item})
-}
+        else
+        {
+            res.status(201).json({message:"order update successufly",data:item})
+        }
 
 }
 )

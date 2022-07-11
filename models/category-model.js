@@ -12,17 +12,17 @@ description:{
 },
 
 
-subcategories:[
-    {
+            subcategories:[
+                {
 
-type:mongoose.Schema.Types.ObjectId,
-ref:"subcategories"
-
-
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"subcategories"
 
 
-}
-]
+
+
+            }
+            ]
 
 
 

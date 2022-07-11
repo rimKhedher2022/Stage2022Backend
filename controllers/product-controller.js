@@ -1,7 +1,9 @@
 const product_model = require("../models/product-model")
-
+const subcategory_model = require("../models/subcategory-model")
 module.exports = {
 
+
+// pushi product fi subcategory 
 create:(req,res)=>{
 
 const product = new product_model(req.body)
@@ -10,9 +12,23 @@ if(err)
 {
     res.status(406).json({message:"failed to create product"})
 }
-else {
-    res.status(201).json({message:"product created successuflly" , data:item}) 
-}
+// push products dans subcategory 
+
+    else {
+
+    subcategory_model.findByIdAndUpdate(req.body.subcategory, // se7i7 
+        
+    {$push:{products:product}} ,()=>  // zid products jedid
+    {
+        res.status(201).json({message:"product created successuflly" , data:item})  
+    }
+        
+        )
+
+
+
+        
+    }
 
 })
 
@@ -22,7 +38,7 @@ else {
 
 getall:(req,res)=>{
 
-    product_model.find({},(err,items)=>
+    product_model.find({}).populate("subcategory").exec((err,items)=> // attribut te7illou
     {
         if(err)
         {
@@ -78,6 +94,8 @@ getbyname:(req,res)=>
     )
 },
 // nezid 7aja jedida ==> req.body
+
+
 update:(req,res)=>
 {
     product_model.findByIdAndUpdate(req.params.id,req.body,{new:true},(err,item)=>
@@ -123,3 +141,7 @@ res.status(406).json({message:"failed to delete"})
 
 
 }
+
+
+
+

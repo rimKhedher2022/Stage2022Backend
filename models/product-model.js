@@ -29,7 +29,7 @@ subcategory:
         type:mongoose.Schema.Types.ObjectId,
         ref:"subcategories"
 
-    },
+    },  
 
         orders:[{
         type:mongoose.Schema.Types.ObjectId,
@@ -47,6 +47,6 @@ subcategory:
 
 },{timestamps:true})
 
-module.exports = mongoose.model("products",productSchema)
+module.exports = mongoose.model("products",productSchema) // reference 
 
 
