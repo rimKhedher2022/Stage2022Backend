@@ -1,6 +1,7 @@
 const client_model = require ("../models/client-model")
 
-module.exports={
+module.exports=
+{
 
 
 
@@ -122,25 +123,25 @@ res.status(201).json({message:"client by this name ",data:items})
 
 
     {
-client_model.findByIdAndUpdate(req.params.id,req.body,{new:true},(err,item)=>
+            client_model.findByIdAndUpdate(req.params.id,req.body,{new:true},(err,item)=>
 
-{
-    if(err)
-    {
-res.status(406).json({message:"failed to update this client"})
+            {
+                if(err)
+                {
+            res.status(406).json({message:"failed to update this client"})
 
-    }
+                }
 
-    else
-    {
+                else
+                {
 
-        res.status(201).json({message:" client updated successufly", data:item})
-    }
-}
+                    res.status(201).json({message:" client updated successufly", data:item})
+                }
+            }
 
 
 
-)
+            )
 
 
     },
@@ -151,22 +152,22 @@ delete:(req,res)=>
 
 
 {
-    client_model.findByIdAndRemove(req.params.id,(err)=>
+            client_model.findByIdAndRemove(req.params.id,(err)=>
 
-    
-    {
-        if(err)
-        {
-res.status(406).json({message:"failed to delete this client"})
-        }
-        else
-        {
-            res.status(201).json({message:"deleted successuflly"})
+            
+            {
+                if(err)
+                {
+        res.status(406).json({message:"failed to delete this client"})
+                }
+                else
+                {
+                    res.status(201).json({message:"deleted successuflly"})
 
-        }
+                }
 
-    }
-    )
+            }
+            )
 }
 
 
