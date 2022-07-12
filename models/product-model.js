@@ -1,5 +1,6 @@
 // schema : war9a kima 3and idara (sequeulette)
 const mongoose = require("mongoose")
+
 const productSchema = new mongoose.Schema({
 
 refproduct:{

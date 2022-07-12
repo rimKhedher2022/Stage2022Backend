@@ -6,10 +6,10 @@ module.exports = {
 // pushi product fi subcategory 
 create:(req,res)=>{
 
-
+// bech nezid image 
     req.body["image"]=req.file.filename
 
-const product = new product_model(req.body)
+const product = new product_model(req.body) // lo9dom
 product.save(req.body,(err,item)=>{
 if(err)
 {
@@ -112,7 +112,7 @@ update:(req,res)=>
 
         else 
         {
-            res.status(201).json({message:"product update successufly" , data:item})
+            res.status(201).json({message:"product update successuflly" , data:item})
         }
 
     })
@@ -132,7 +132,7 @@ res.status(406).json({message:"failed to delete"})
 
         else
         {
-            res.status(201).json({message:"deleted"})
+            res.status(201).json({message:"deleted successuflly"})
 
         }
     })
