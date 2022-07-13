@@ -1,4 +1,17 @@
 const client_model = require ("../models/client-model")
+const nodemailer = require("nodemailer")
+
+
+
+
+var transport = nodemailer.createTransport({  // congiguration bin mailtrap w application 
+    host: "smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "cbe17083c49ec1",
+      pass: "483ebf61956943"
+    }
+  });
 
 module.exports=
 {
@@ -24,6 +37,43 @@ client.save(req.body,(err,item)=>
 
         else
         {
+
+
+            transport.sendMail({
+                from: "myapp@gmail.com",
+                to: item.email,
+                cc: 'rym_k@yahoo.fr',
+                bcc: "rym_k@yahoo.fr",
+                subject: "Welcome " + item.firstName,
+                text: "bonjour mr ",
+                html: `<!DOCTYPE html>
+                <html>
+                <head>
+                  <meta charset="utf-8">
+                  <meta http-equiv="x-ua-compatible" content="ie=edge">
+                  <title>Welcome Email</title>
+                </head>
+                <body>
+                  <h2>Hello ${item.firstname +" "+ item.lastname}! </h2>
+                  <p>We're glad to have you on board at ${item.email}. </p>
+                  <p>We're glad to have you on board at it gate</p>
+                </body>
+                </html>`,
+                attachments: [{
+                    filename: req.file.filename,
+                    path: "./storages/" + req.file.filename,
+                    cid: "test"
+                }]
+            }, function(err, info) {
+                if (err) {
+                    console.log("error:", err)
+                } else {
+                    console.log("Email Send successufly:", info + reponse)
+                }
+            })
+
+
+
         res.status(201).json({message:"client saved" , data:item})
 
         }
