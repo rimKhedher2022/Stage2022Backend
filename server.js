@@ -23,6 +23,7 @@ const client_router = require("./routers/client-router")
 
 const provider_router=require("./routers/provider-router")
 const admin_router=require("./routers/admin-router")
+const auth_router=require("./routers/auth-router")
 
 app.use('/products', product_router)
 app.use('/subcategories',subcategory_router )
@@ -31,6 +32,7 @@ app.use('/orders',order_router)
 app.use('/clients',client_router)
 app.use('/providers',provider_router)
 app.use('/admins',admin_router)
+app.use('/auth',auth_router)
 
 
 // affichage image 3al browser 

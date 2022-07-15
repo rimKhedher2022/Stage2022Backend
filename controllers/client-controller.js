@@ -39,42 +39,42 @@ client.save(req.body,(err,item)=>
         {
 
 
-            transport.sendMail({
-                from: "myapp@gmail.com",
-                to: item.email,
-                cc: 'rym_k@yahoo.fr',
-                bcc: "rym_k@yahoo.fr",
-                subject: "Welcome " + item.firstName,
-                text: "bonjour mr ",
-                html: `<!DOCTYPE html>
-                <html>
-                <head>
-                  <meta charset="utf-8">
-                  <meta http-equiv="x-ua-compatible" content="ie=edge">
-                  <title>Welcome Email</title>
-                </head>
-                <body>
-                  <h2>Hello ${item.firstname +" "+ item.lastname}! </h2>
-                  <p>We're glad to have you on board at ${item.email}. </p>
-                  <p>We're glad to have you on board at it gate</p>
-                </body>
-                </html>`,
-                attachments: [{
-                    filename: req.file.filename,
-                    path: "./storages/" + req.file.filename,
-                    cid: "test"
-                }]
-            }, function(err, info) {
-                if (err) {
-                    console.log("error:", err)
-                } else {
-                    console.log("Email Send successufly:", info + reponse)
-                }
-            })
+        //    /*  transport.sendMail({
+        //         from: "myapp@gmail.com",
+        //         to: item.email,
+        //         cc: 'rym_k@yahoo.fr',
+        //         bcc: "rym_k@yahoo.fr",
+        //         subject: "Welcome " + item.firstName,
+        //         text: "bonjour mr ",
+        //         html: `<!DOCTYPE html>
+        //         <html>
+        //         <head>
+        //           <meta charset="utf-8">
+        //           <meta http-equiv="x-ua-compatible" content="ie=edge">
+        //           <title>Welcome Email</title>
+        //         </head>
+        //         <body>
+        //           <h2>Hello ${item.firstname +" "+ item.lastname}! </h2>
+        //           <p>We're glad to have you on board at ${item.email}. </p>
+        //           <p>We're glad to have you on board at it gate</p>
+        //         </body>
+        //         </html>`,
+        //         attachments: [{
+        //             filename: req.file.filename,
+        //             path: "./storages/" + req.file.filename,
+        //             cid: "test"
+        //         }]
+        //     }, function(err, info) {
+        //         if (err) {
+        //             console.log("error:", err)
+        //         } else {
+        //             console.log("Email Send successufly:", info + reponse)
+        //         }
+        //     }) */
 
 
 
-        res.status(201).json({message:"client saved" , data:item})
+        res.status(201).json({message:"client saved successufly" , data:item})
 
         }
 
