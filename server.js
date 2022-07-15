@@ -5,10 +5,22 @@ const app = express()
 const dotenv = require('dotenv').config()
 const database = require("./config/database")
 
+const morgan = require("morgan")
+
+const cors = require("cors")
+
+var corsOptions={
+origin:"http://localhost:3000",
+optionSuccessStatus:200
+
+}
+
+app.use(cors("corsOptions"))
 
 const PORT = process.env.PORT
 
 app.use(express.json()) // middleware
+app.use(morgan('tiny'))
 
 const product_router = require ("./routers/product-router")
 

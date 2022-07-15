@@ -3,8 +3,9 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 const JWT_SECRET = process.env.JWT_SECRET
+const RT_SECRET = process.env.RT_SECRET
 
-
+let refreshtokens=[] // 
 
 // generate accesstoken 
 
@@ -12,6 +13,25 @@ const generateAccessToken=(user)=>
 {
     return jwt.sign({id:user._id,email:user.email},JWT_SECRET,{expiresIn:"30m"})
 }
+
+// generate refreshtoken   // 9edima fasa5ha 
+
+const generateRefreshToken=(user)=>
+
+{
+    return jwt.sign({id:user._id,email:user.email,},RT_SECRET,{expiresIn:"1h"})
+}
+
+
+
+
+
+
+
+
+//refresh token 
+
+
 
 
 
@@ -49,12 +69,52 @@ if(!validPassword)
 
 else{
     const accesstoken = generateAccessToken(user)
-    res.status(200).json({data:user,accesstoken}) // min gir data normal 
+    const refreshtoken = generateRefreshToken(user)
+
+    refreshtokens.push(refreshtoken)
+
+    res.status(200).json({data:user,accesstoken,refreshtoken}) // min gir data normal 
 }
 
 }
 
+},
+// refreshtoken 
+// 
+refreshtoken:(req,res)=>
+
+{
+    const refreshtoken=req.body.token
+
+    if(!refreshtokens.includes(refreshtoken))
+    {
+        return res.status(401).json("refresh token is not valid")
+    }
+
+    jwt.verify(refreshtoken,RT_SECRET,(err,user)=>
+    
+    
+    {
+        err && console.log(err)
+
+        refreshtokens = refreshtokens.filter((token)=> token !== refreshtoken)
+        const newaccesstoken = generateAccessToken(user)
+        const newrefreshtoken = generateRefreshToken(user)
+
+
+        refreshtokens.push(newrefreshtoken)
+
+
+        res.status(200).json({Accesstoken:newaccesstoken,Refreshtoken:newrefreshtoken})
+
+
+
+    }
+    
+    )
+
 }
+
 
 
 

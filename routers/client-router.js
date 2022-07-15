@@ -4,6 +4,8 @@ const client_controller = require("../controllers/client-controller")
 
 const upload = require("../middlewares/uploadFile")
 
+
+
 route.post('/register',upload.single("photo"),client_controller.register)
 route.get('/getall',client_controller.getall)
 

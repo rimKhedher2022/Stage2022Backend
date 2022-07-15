@@ -136,6 +136,36 @@ res.status(406).json({message:"failed to delete"})
 
         }
     })
+}, 
+
+
+
+// pull
+
+deleteproductfromsubcat:async(req,res)=>
+// point d'interrogation : kif ma ynajamch ya9ra el 7aja
+
+ {
+        const product = await product_model.findById({_id:req.params.id})
+
+        await subcategory_model.findByIdAndUpdate(product.subcategory,
+            {
+                $pull:{products:req.params.id}}).then(item=>
+                    
+                    
+                    {
+                        res.status(201).json({message:"product deleted successuflly", item})
+                    }).catch(err=>
+                        
+                        
+                        {
+                            res.status(406).json({message:"failed  to delete", err}) 
+                        })       
+}
+    
+
+
+
 }
 
 
@@ -144,7 +174,7 @@ res.status(406).json({message:"failed to delete"})
 
 
 
-}
+
 
 
 
