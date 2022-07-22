@@ -73,7 +73,7 @@ else{
 
     refreshtokens.push(refreshtoken)
 
-    res.status(200).json({data:user,accesstoken,refreshtoken}) // min gir data normal 
+    res.status(200).json({message:"welcome" ,data:user,accesstoken,refreshtoken}) // min gir data normal 
 }
 
 }
@@ -84,6 +84,7 @@ else{
 refreshtoken:(req,res)=>
 
 {
+    //take the refresh token from the user
     const refreshtoken=req.body.token
 
     if(!refreshtokens.includes(refreshtoken))

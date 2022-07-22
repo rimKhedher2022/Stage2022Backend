@@ -59,11 +59,11 @@ client.save(req.body,(err,item)=>
         //           <p>We're glad to have you on board at it gate</p>
         //         </body>
         //         </html>`,
-        //         attachments: [{
-        //             filename: req.file.filename,
-        //             path: "./storages/" + req.file.filename,
-        //             cid: "test"
-        //         }]
+            // attachments: [{
+            //        filename: req.file.filename,
+            //       path: "./storages/" + req.file.filename,
+            //      cid: "test"
+            //   }]
         //     }, function(err, info) {
         //         if (err) {
         //             console.log("error:", err)
