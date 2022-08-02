@@ -7,7 +7,7 @@ module.exports = {
 create:(req,res)=>{
 
 // bech nezid image 
-    req.body["image"]=req.file.filename
+    req.body["image"] = req.file.filename
 
 const product = new product_model(req.body) // lo9dom
 product.save(req.body,(err,item)=>{

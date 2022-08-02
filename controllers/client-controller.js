@@ -1,5 +1,6 @@
 const client_model = require ("../models/client-model")
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
+const { query } = require("express");
 
 
 
@@ -145,7 +146,14 @@ res.status(201).json({message:"client",data:items})
 
     getbyname:(req,res)=>
     {
-client_model.find({firstname:req.query.firstname},(err,items)=>
+
+// consttante 
+//? si 
+
+// : sinon
+// si vide raja3 el baz 
+        let query = req.query.firstname === "" ? {} : {firstname:req.query.firstname}
+client_model.find(query,(err,items)=>
 {
 
     if(err)

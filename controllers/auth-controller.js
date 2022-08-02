@@ -11,7 +11,7 @@ let refreshtokens=[] //
 
 const generateAccessToken=(user)=>
 {
-    return jwt.sign({id:user._id,email:user.email},JWT_SECRET,{expiresIn:"30m"})
+    return jwt.sign({id:user._id,email:user.email},JWT_SECRET,{expiresIn:"1m"})
 }
 
 // generate refreshtoken   // 9edima fasa5ha 
@@ -19,7 +19,7 @@ const generateAccessToken=(user)=>
 const generateRefreshToken=(user)=>
 
 {
-    return jwt.sign({id:user._id,email:user.email,},RT_SECRET,{expiresIn:"1h"})
+    return jwt.sign({id:user._id,email:user.email,},RT_SECRET,{expiresIn:"2m"})
 }
 
 
@@ -52,7 +52,7 @@ const user = await UserModel.findOne({email:req.body.email})
 
 if(!user)
 {
-    res.status(406).json("email not found")
+    res.status(406).json({message:"email not found"})
 }
 
 
@@ -63,7 +63,7 @@ else{
 
 if(!validPassword)
 {
-    res.status(406).json("password incorrect")
+    res.status(403).json({message:"password incorrect"})
 }
 
 
