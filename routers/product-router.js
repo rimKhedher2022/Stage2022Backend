@@ -14,7 +14,7 @@ const verifyToken = require("../middlewares/verifyToken")
 
 route.post('/create',upload.single("photo"),product_controller.create)
 
-route.get('/getall',verifyToken,product_controller.getall)  // verifyToken
+route.get('/getall',product_controller.getall)  // verifyToken
 
 route.get('/getbyId/:id',product_controller.getone)
 route.get('/getbyname',product_controller.getbyname)
